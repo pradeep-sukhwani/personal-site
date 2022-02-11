@@ -1,0 +1,41 @@
+{% load staticfiles %}
+
+<div class="mdl-grid portfolio-max-width">
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">About</h2>
+        </div>
+
+        <div class="mdl-card__media">
+            <img class="image" src="{{ about_pic }}" border="0" alt="">
+        </div>
+
+        <div class="mdl-grid portfolio-copy">
+            <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">HELLO WORLD</h3>
+            <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding">
+                <p>My name is Pradeep, I’m a Full Stack Developer from Ahmedabad, India. I use web technologies to make
+                    web applications. At the moment I’m primarily using Python and Django with JavaScript.</p>
+                <p>I have a strong passion for web developing, meeting new people, Sci-Fi and all Scandinavian stuff,
+                    such as their travel, photography and nature.</p>
+                <p>A few years back I quit my Business and started my journey around the world with only a laptop.</p>
+                <p>Always happy to talk to like-minded and interesting people, so if you’re one of them, feel free to <a
+                        class="contact" href="javascript:void(0)">contact me</a> anytime:)</p>
+            </div>
+            <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">What I’ve been up to lately:</h3>
+            <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding">
+                <ul>
+                    <li>Currently, working in a cool startup called <a href="http://www.nividata.com/" target="_blank">NiviData Consultancy.</a></li>
+                    <li>creating this website again with some other UI and cool interface (for the second time)</li>
+                    <li>doing an online course on Udacity to touch-up my skills</li>
+                    <li>contributing and creating pull requests to open source projects such as <a
+                            href="https://github.com/DjangoGirls/tutorial" target="_blank">Django Girls</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".contact").click(function () {
+        $(".mdl-navigation__link:eq(2)").trigger("click");
+    });
+</script>

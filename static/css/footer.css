@@ -1,0 +1,64 @@
+.socialIcons{
+    justify-content: center;
+    flex-wrap: wrap;
+    width: auto;
+}
+
+.align-center {
+    margin: 0 auto;
+    display: table;
+}
+
+.socialIcons a {
+    height: auto;
+    width: auto;
+    padding: auto;
+}
+
+.socialIcons svg {
+    width: 20px;
+    height: 20px;
+}
+
+.facebook, .twitter, .linkedin, .github, .stackoverflow {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    padding: 5px;
+}
+
+.face, .twit, .link, .gith, .stac{
+    fill: #4A1600;
+    color: white;
+    cursor: pointer;
+}
+
+.face:hover{
+    fill: #3B5998;
+}
+
+.twit:hover{
+    fill: #00ACEE;
+}
+
+.link:hover{
+    fill: #007FB2;
+}
+
+.gith:hover{
+    fill: black;
+}
+
+/*Stackoverflow*/
+
+.stackoverflow .stac-hover{
+    display: none;
+}
+
+.stackoverflow:hover .stac{
+    display: none;
+}
+
+.stackoverflow:hover .stac-hover{
+    display: inline-block;
+}

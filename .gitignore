@@ -1,0 +1,18 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+### Apple ###
+.DS_Store
+
+### Python ###
+*.pyc
+
+### Local Setting ###
+local_settings.py
+
+### Idea ###
+.idea
+
+### DB ###
+*.sql
+
+static_files

@@ -1,0 +1,59 @@
+{% load staticfiles %}
+
+<div class="mdl-grid portfolio-max-width">
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Timeline</h2>
+        </div>
+
+        <div class="mdl-card__media">
+            <img class="image" src="{{ time_line_pic }}" border="0" alt="">
+        </div>
+
+        <div class="timeline-wrapper">
+            <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding">
+            <section class="timeline">
+                <div class="container">
+                    {% for data in career %}
+                        {% if data.left_side %}
+                            <div class="timeline-item">
+                                <div class="timeline-img"></div>
+                                <div class="timeline-content timeline-card js--fadeInLeft">
+                                    <div class="timeline-img-header">{{ data.left_side.pic.pic.url }}
+                                        <h2>{{ data.left_side.career_name }}</h2>
+                                    </div>
+                                    <div class="career-type">
+                                        {{ data.left_side.get_career_type }}
+                                    </div>
+                                    <div class="date">{% if not data.left_side.end_date %} Since
+                                        {{ data.left_side.start_date|date:"M Y" }} {% else %}
+                                        {{ data.left_side.start_date|date:"M Y" }}{% endif %}</div>
+                                    <p>{{ data.left_side.description|safe }}</p>
+    {#                                <a class="bnt-more" href="javascript:void(0)">More</a>#}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="timeline-item">
+                                <div class="timeline-img"></div>
+                                <div class="timeline-content timeline-card js--fadeInRight">
+                                    <div class="timeline-img-header">
+                                        <h2>{{ data.right_side.career_name }}</h2>
+                                    </div>
+                                    <div class="career-type">
+                                        {{ data.right_side.get_career_type }}
+                                    </div>
+                                    <div class="date">{% if not data.right_side.end_date %} Since
+                                        {{ data.right_side.start_date|date:"M Y" }} {% else %}
+                                        {{ data.right_side.start_date|date:"M Y" }}{% endif %}</div>
+                                    <p>{{ data.right_side.description|safe }}</p>
+{#                                    <a class="bnt-more" href="javascript:void(0)">More</a>#}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        </div>
+    </div>
+</div>

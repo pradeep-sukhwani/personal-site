@@ -1,0 +1,100 @@
+{% load staticfiles %}
+
+<div class="mdl-grid portfolio-max-width portfolio-contact">
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Looking for a developer?</h2>
+        </div>
+        <div class="mdl-card__media">
+            <img class="image" src="{{ contact_pic }}" border="0" alt="">
+        </div>
+        <div class="mdl-card__supporting-text">
+            <div class="align-center">
+                <p><strong>Are you looking for a professional, communicative & punctual software engineer with
+                    extensive full-stack web development skills for your next project?</strong></p>
+                <p>If you have an application you are interested in developing with web technology, I’d love to work
+                    with you on it. I’m a full-stack developer which means I can bring your project from concept to
+                    completion. I work primarily with Python and Django on the back-end and JavaScript on the
+                    front-end but picking up new languages or frameworks isn’t a problem.</p>
+                <p>Why not contact me to discuss it further?</p>
+            </div>
+            <form action="{% url 'personal:load-tabs-send-mail' %}" id="ContactForm" method="POST">
+                {% csrf_token %}
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" pattern="[A-Z,a-z, ]*" type="text" name="name" required>
+                    <label class="mdl-textfield__label" for="Name">Name</label>
+                    <span class="mdl-textfield__error required"><strong>Should I call you John Doe?</strong></span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" name="email"
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                    <label class="mdl-textfield__label" for="Email">Email</label>
+                    <span class="mdl-textfield__error"><strong>Eg: john.doe@gmail.com</strong></span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" name="subject" required>
+                    <label class="mdl-textfield__label" for="Name">Subject</label>
+                    <span class="mdl-textfield__error"><strong>Hmm!! Personal or Professional</strong></span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <textarea class="mdl-textfield__input" type="text" rows="5" name="note" required></textarea>
+                    <label class="mdl-textfield__label" for="note">Enter note</label>
+                    <span class="mdl-textfield__error"><strong>Nothing then just say Howdi!</strong></span>
+                </div>
+                <p>
+                    <button class="mdl-button mdl-js-button
+                    mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Send
+                    </button>
+                    <div class="mdl-spinner mdl-js-spinner"></div>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".mdl-textfield__input").focus(function () {
+            $(this).parent().addClass('is-focused');
+            $(this).parent().removeClass('is-invalid');
+        });
+
+        $(".mdl-textfield__input").blur(function () {
+            if (!this.value) {
+                $(this).parent().removeClass('is-focused');
+                $(this).prop('required', true);
+                $(this).parent().addClass('is-invalid');
+            }
+        });
+        $("#ContactForm").submit(function () {
+            var form = $(this);
+            var url = form.attr("action");
+            var btn = form.find("button");
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: $(form).serialize(),
+                beforeSend: function () {
+                    btn.text("Sending...");
+                    btn.attr("disabled", "disabled");
+                    componentHandler.upgradeElement($('.mdl-js-spinner')[0]);
+                    $(".mdl-spinner").addClass("is-active");
+                },
+                success: function (response) {
+                    if (response.sent) {
+                        $(document).find("title").text("Success | Pradeep Sukhwani");
+                        $(".mdl-card__title-text").html("Success");
+                        $(".mdl-card__supporting-text").html('<img class="align-center"' +
+                            'src="{% static 'images/success.png' %}"><h1 class="align-center">HUZZAH!</h1>' +
+                            '<p class="align-center">Your message just arrived in my inbox. Talk to you soon.</p>');
+                    } else {
+                        alert("Something Went wrong try reloading the page!");
+                    }
+                },
+                error: function () {
+                    alert("Something went wrong");
+                }
+            });
+            return false;
+        });
+    });
+</script>
